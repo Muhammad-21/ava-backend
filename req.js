@@ -3,13 +3,20 @@ require('dotenv').config();
 
 const { AUTH, RQUID } = process.env;
 
-const gigaReq = async (text) => {
+const gigaReq = async (text, language) => {
   const body = {
     model: "GigaChat:latest",
-    messages: [{
-      role: "user",
-      content: text,
-    }],
+    messages: [
+        {
+            role: "user",
+            content: language === 'ru' ? `Представь что ты учитель русского языка. И ты девушка. Ответ кратко на мои вопросы и также задавай мне` : `Imagine that you are an English teacher. And you're a girl. Answer my questions briefly and also ask me.`,
+        },
+        {
+            role: "user",
+            content: text
+        }
+    ],
+    max_tokens: 40
   };
 
   const bodyToken = {
