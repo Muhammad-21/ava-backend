@@ -26,7 +26,7 @@ app.post('/talk', (req, res) => {
   })
   axios.defaults.httpsAgent = httpsAgent
 
-  gigaReq(req.body.text, req.body.language).then(response => {
+  gigaReq(req.body.text, req.body.language, req.body.answer).then(response => {
     textToSpeech(response.data.choices[0].message.content, req.body.language)
         .then(result => {
           res.json(result);    

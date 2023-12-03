@@ -46,7 +46,7 @@ const textToSpeech = async (text, language) => {
       ssml,
       (result) => {
         synthesizer.close();
-        resolve({ blendData, filename: `/speech-${randomString}.mp3` });
+        resolve({ blendData, filename: `/speech-${randomString}.mp3`, assistantAnswer: text });
       },
       (error) => {
         synthesizer.close();
